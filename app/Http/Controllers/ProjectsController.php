@@ -24,7 +24,7 @@ class ProjectsController extends Controller
         $project->title = request('title');
         $project->description = request('description');
         $project->save();
-        return redirect('/project');
+        return redirect('/projects');
     }
 
 
@@ -36,7 +36,7 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        dd($project);
     }
 
     /**
@@ -47,7 +47,8 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-//        return $project;
+//        $project = Project::findOrFail($id);
+        //        return $project;
         return view('projects.edit', compact('project'));
     }
 
@@ -61,7 +62,7 @@ class ProjectsController extends Controller
     public function update(Request $request, Project $project)
     {
 //        dd($request->all());
-//        $project = Project::find($id);
+//        $project = Project::findOrFail($id);
         $project->title = $request['title'];
         $project->description = $request['description'];
         $project->save();
@@ -76,6 +77,8 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+//        $project = Project::findOrFail($id)->delete();
+        $project->delete();
+        return redirect('/projects');
     }
 }
