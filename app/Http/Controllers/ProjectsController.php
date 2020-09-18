@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Projects;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -25,17 +24,17 @@ class ProjectsController extends Controller
         $project->title = request('title');
         $project->description = request('description');
         $project->save();
-        return redirect('/projects');
+        return redirect('/project');
     }
 
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Projects  $projects
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Projects $projects)
+    public function show(Project $project)
     {
         //
     }
@@ -43,33 +42,39 @@ class ProjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Projects  $projects
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Projects $projects)
+    public function edit(Project $project)
     {
-        //
+//        return $project;
+        return view('projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Projects  $projects
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Projects $projects)
+    public function update(Request $request, Project $project)
     {
-        //
+//        dd($request->all());
+//        $project = Project::find($id);
+        $project->title = $request['title'];
+        $project->description = $request['description'];
+        $project->save();
+        return redirect('/projects');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Projects  $projects
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Projects $projects)
+    public function destroy(Project $project)
     {
         //
     }
