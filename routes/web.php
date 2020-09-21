@@ -17,3 +17,5 @@ Route::get('/contact', 'PagesController@contact');
 
 Route::resource('/projects', 'ProjectsController');
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+//Route::post('/tasks', 'ProjectTasksController@store');    // need to pass params via hidden or see lower
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');

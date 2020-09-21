@@ -14,7 +14,7 @@
     <title>Document1</title>
 </head>
 <body>
-<div class="content">
+<div class="container">
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About Us</a></li>
