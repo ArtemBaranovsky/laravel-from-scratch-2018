@@ -9,7 +9,7 @@
     <title>Document1</title>
 </head>
 <body>
-<div class="container">
+<div class="content">
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About Us</a></li>
