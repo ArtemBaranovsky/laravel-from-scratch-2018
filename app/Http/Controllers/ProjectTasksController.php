@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProjectTasksController extends Controller
 {
-    public function update(Task $task)
+/*    public function update(Task $task)
     {
 //        dd('hello');
 //        dd($task);
@@ -26,12 +26,13 @@ class ProjectTasksController extends Controller
 //            $task->incomplete();
 //        }
 
-//        request()->has('completed') ? $task->complete() : $task->incomplete(); // 3 opt - ternar
-        $method = request()->has('completed') ? 'complete' : 'incomplete';  // 4 opt.  -via dynamic method
-        $task->$method();
+        request()->has('completed') ? $task->complete() : $task->incomplete(); // 3 opt - ternar
+//        $method = request()->has('completed') ? 'complete' : 'incomplete';  // 4 opt.  -via dynamic method
+//        $task->$method();
+
         //        return redirect('/projects');
         return back();
-    }
+    }*/
     public function store(Project $project)
     {
 /*        Task::create([
