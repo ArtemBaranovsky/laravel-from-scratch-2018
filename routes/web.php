@@ -1,5 +1,6 @@
 <?php
 
+use \Illuminate\Filesystem\Filesystem;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +12,26 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+//app()->bind('example', function (){
+//    return new \App\Example;
+//});
+//app()->singleton('example', function (){
+/*app()->singleton('App\Example', function (){
+//    dd('called');
+    return new \App\Example;
+});*/
+//app()->singleton('twitter', function (){
+app()->singleton('App\Services\Twitter', function (){
+//    return new Twitter(config('services.twitter.api_key'));
+//    return new \App\Services\Twitter(config('services.twitter.api_key'));
+    return new \App\Services\Twitter('random_string');
+});
+//Route::get('/', 'PagesController@home');
+Route::get('/', function (){
+//    dd(app(Filesystem::class));
+//    dd(app('example'), app('example'));
+    dd(app('App\Example'));
+});
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 

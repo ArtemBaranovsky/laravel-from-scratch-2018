@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Services\Twitter;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -42,10 +44,21 @@ class ProjectsController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+//    public function show(Project $project, Filesystem $file)
+//    public function show(Project $project, $twitter)  // error
+    public function show(Project $project, Twitter $twitter)
     {
+//        app('Illuminate\Filesystem\Filesystem');
+//        $filesystem = app('Illuminate\Filesystem\Filesystem');
+//        $twitter = app('twitter');
+        dd($twitter);
         return view('projects.show', compact('project'));
     }
+/*    public function show(Filesystem $file)
+    {
+//        dd($file);
+//        dd($file->get());
+    }*/
 
     /**
      * Show the form for editing the specified resource.
