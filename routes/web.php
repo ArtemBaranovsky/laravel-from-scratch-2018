@@ -15,14 +15,14 @@ use \Illuminate\Filesystem\Filesystem;
 */
 
 //Route::get('/', 'PagesController@home');
-Route::get('/', function (UserRepository $users){
-    dd($users);
-    return view('welcome');
-});
-//Route::get('/', function (Twitter $twitter){
-//    dd($twitter);
+//Route::get('/', function (UserRepository $users){
+//    dd($users);
 //    return view('welcome');
 //});
+Route::get('/', function (Twitter $twitter){
+    dd($twitter);
+    return view('welcome');
+});
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 

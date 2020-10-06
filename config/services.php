@@ -35,4 +35,14 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'twitter' => [
+//        'key' => 'public-key',
+//        'secret' => 'private-key',
+        'key' => env('TWITTER_KEY'),
+        'secret' => env('TWITTER_SECRET'),
+    ],
+
+//    'stripe' => [
+//        'token' => '' // config('services.stripe.token')
+//    ]
 ];
