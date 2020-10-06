@@ -14,15 +14,15 @@ use \Illuminate\Filesystem\Filesystem;
 |
 */
 
-//Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home');
 //Route::get('/', function (UserRepository $users){
 //    dd($users);
 //    return view('welcome');
 //});
-Route::get('/', function (Twitter $twitter){
-    dd($twitter);
-    return view('welcome');
-});
+//Route::get('/', function (Twitter $twitter){
+//    dd($twitter);
+//    return view('welcome');
+//});
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
@@ -33,3 +33,7 @@ Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
 Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
 Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
