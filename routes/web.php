@@ -26,7 +26,8 @@ Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
-Route::resource('/projects', 'ProjectsController');
+//Route::resource('/projects', 'ProjectsController');
+Route::resource('/projects', 'ProjectsController')->middleware('can:update,project');
 //Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 //Route::patch('/tasks/{task}', 'ProjectTasksController@update')->middleware('auth')->except(['show']);
 //Route::post('/tasks', 'ProjectTasksController@store');    // need to pass params via hidden or see lower

@@ -13,7 +13,7 @@ class ProjectsController extends Controller
     {
 //        $this->middleware('auth');
 //        $this->middleware('auth')->only(['store', 'update']);
-        $this->middleware('auth')/*->except(['show'])*/;
+        $this->middleware('auth')->except(['show']);
     }
 
     public function index()
@@ -61,11 +61,34 @@ class ProjectsController extends Controller
 //    public function show(Project $project, Filesystem $file)
 //    public function show(Project $project, $twitter)  // error
     public function show(Project $project, Twitter $twitter)
+//    public function show(? Project $project, Twitter $twitter)    // optional type hint
     {
 //        app('Illuminate\Filesystem\Filesystem');
 //        $filesystem = app('Illuminate\Filesystem\Filesystem');
 //        $twitter = app('twitter');
 //        dd($twitter);
+
+//        $this->authorize('view', $project);
+        $this->authorize('update', $project); // comment if you want your logic to respond to guest users
+//        dd($project->owner_id, auth()->id());
+//        if ($project->owner_id !== auth()->id()) {
+//            abort(403);
+//        }
+
+//dd($project->owner_id, auth()->id());
+//        abort_if(! auth()->user()->owns($project), 403);
+//        abort_unless(auth()->user()->owns($project), 403);
+//        abort_if($project->owner_id != auth()->id(), 403);
+//        \Gate::allows();
+//        \Gate::denies();
+//        if (\Gate::denies('update', $project)) {
+//            abort(403);
+//        }
+//        abort_if((\Gate::denies('update', $project)), 403);
+//        abort_unless((\Gate::allows('update', $project)), 403);
+//        auth()->user()->can('update', $project);
+//        auth()->user()->cannot('update', $project);
+
         return view('projects.show', compact('project'));
     }
 /*    public function show(Filesystem $file)
@@ -102,7 +125,8 @@ class ProjectsController extends Controller
 //        $project->title = $request['title'];
 //        $project->description = $request['description'];
 //        $project->save();
-
+        $this->authorize('update', $project);
+        // TODO add validation here
         $project->update(request(['title', 'description']));
         return redirect('/projects');
     }
@@ -116,6 +140,7 @@ class ProjectsController extends Controller
     public function destroy(Project $project)
     {
 //        $project = Project::findOrFail($id)->delete();
+        $this->authorize('update', $project);
         $project->delete();
         return redirect('/projects');
     }
