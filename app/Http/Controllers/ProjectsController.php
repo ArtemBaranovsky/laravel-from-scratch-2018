@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Services\Twitter;
+use App\Mail\ProjectCreated;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,12 @@ class ProjectsController extends Controller
     {
 //        $projects = Project::all();
         $projects = Project::where('owner_id', auth()->id())->get();
+//        $projects = Project::where('owner_id', auth()->id())->take(1)->get();
+//        dump($projects);
+//        cache()->rememberForever('stats', function(){
+//            return ['lessons' => 1300, 'hours' => 50000, 'series' => 100];
+//        });
+//        $stats = cache()->get('stats');
         return view('projects.index', compact('projects'));
     }
 
@@ -47,7 +54,14 @@ class ProjectsController extends Controller
 //            'description' => ['required', 'min:3'],
 //        ]));
 //        Project::create($attributes + ['owner_id' => auth()->id()]);
-        Project::create($attributes);
+//        Project::create($attributes);
+        $project = Project::create($attributes);
+
+        \Mail::to('jeffrey@laracast.com')->send(
+            new ProjectCreated($project)
+//            new ProjectCreated()    // we will add specifics later, but in real life you could send through for example the project, that was constructed
+        );
+
         return redirect('/projects');
     }
 
