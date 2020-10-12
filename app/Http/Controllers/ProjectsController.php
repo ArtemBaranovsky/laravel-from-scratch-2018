@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Services\Twitter;
 use App\Mail\ProjectCreated;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 
@@ -65,7 +66,8 @@ class ProjectsController extends Controller
 //        Project::create($attributes);
         $project = Project::create($attributes);
 
-        \Mail::to('jeffrey@laracast.com')->send(
+//        \Mail::to('jeffrey@laracast.com')->send(
+        Mail::to($project->owner->email)->send(
             new ProjectCreated($project)
 //            new ProjectCreated()    // we will add specifics later, but in real life you could send through for example the project, that was constructed
         );
