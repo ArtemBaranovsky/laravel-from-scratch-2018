@@ -8,6 +8,7 @@ use App\Mail\ProjectCreated;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use App\Events\ProjectCreated as ProjectCreatedEvent;
 
 class ProjectsController extends Controller
 {
@@ -63,9 +64,9 @@ class ProjectsController extends Controller
 //            'description' => ['required', 'min:3'],
 //        ]));
 //        Project::create($attributes + ['owner_id' => auth()->id()]);
-        Project::create($attributes);
-//        $project = Project::create($attributes);
-
+//        Project::create($attributes);
+        $project = Project::create($attributes);
+//        event(new ProjectCreatedEvent($project));
 //        \Mail::to('jeffrey@laracast.com')->send(
 /*        Mail::to($project->owner->email)->send(
             new ProjectCreated($project)

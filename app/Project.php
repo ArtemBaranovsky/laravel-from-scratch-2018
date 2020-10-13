@@ -12,23 +12,27 @@ class Project extends Model
         'title', 'description', 'owner_id'
     ];
 
+    protected $dispatchesEvents = [
+        'created' => ProjectCreated::class
+    ];
+
 //    protected $guarded = [];
 
-    public static function boot()
-    {
-        parent::boot();
+//    public static function boot()
+//    {
+/*        parent::boot();
         static::created(function($project){
             Mail::to($project->owner->email)->send(
                 new ProjectCreated($project)
             );
-        });
+        });*/
 /*        static::updated(function($project){
             // do something else
         });
         static::deleted(function($project){
             // do something else
         });*/
-    }
+//    }
 
     public function owner()
     {
