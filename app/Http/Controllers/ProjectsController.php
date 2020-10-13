@@ -63,14 +63,14 @@ class ProjectsController extends Controller
 //            'description' => ['required', 'min:3'],
 //        ]));
 //        Project::create($attributes + ['owner_id' => auth()->id()]);
-//        Project::create($attributes);
-        $project = Project::create($attributes);
+        Project::create($attributes);
+//        $project = Project::create($attributes);
 
 //        \Mail::to('jeffrey@laracast.com')->send(
-        Mail::to($project->owner->email)->send(
+/*        Mail::to($project->owner->email)->send(
             new ProjectCreated($project)
 //            new ProjectCreated()    // we will add specifics later, but in real life you could send through for example the project, that was constructed
-        );
+        );*/
 
         return redirect('/projects');
     }
