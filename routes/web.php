@@ -17,6 +17,11 @@ use \Illuminate\Filesystem\Filesystem;
 
 Route::get('/', 'PagesController@home');
 
+// laravel mix testing
+//Route::get('/', function (){
+//    return view('welcome');
+//});
+
 // notifications testing
 //Route::get('/', function (){
 //    $user = App\User::first();
