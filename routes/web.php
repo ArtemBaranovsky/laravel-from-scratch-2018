@@ -1,5 +1,6 @@
 <?php
 
+use App\Notifications\SubscriptionRenewalFailed;
 use App\Repositories\UserRepository;
 use App\Services\Twitter;
 use \Illuminate\Filesystem\Filesystem;
@@ -15,6 +16,14 @@ use \Illuminate\Filesystem\Filesystem;
 */
 
 Route::get('/', 'PagesController@home');
+
+// notifications testing
+//Route::get('/', function (){
+//    $user = App\User::first();
+//    $user->notify(new SubscriptionRenewalFailed());
+//    return 'Done';
+//});
+
 //Route::get('/', function (UserRepository $users){
 //    dd($users);
 //    return view('welcome');
